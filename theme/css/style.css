@@ -607,17 +607,17 @@ hr {
 
 blockquote {
     margin: 2em auto;
-    padding: 1em;
+    padding: .8em;
     box-sizing: border-box;
     border-left: 0.25em solid #e5e4e1;
-    font-style: italic;
     font-weight: 400;
     color: #45484d;
     background: #faf9f7
 }
 
 blockquote p {
-    margin: 1em auto
+    margin: 1em auto;
+    font-style: italic
 }
 
 blockquote p:first-child {
@@ -1584,6 +1584,20 @@ img {
     width: 100%;
     margin: auto;
     border: 0.125em solid #fff
+}
+
+.avatar-emoji {
+    position: relative;
+    z-index: 1;
+    float: left;
+    /* border-right: 0.25em solid #e5e4e1; */
+    width: 7%;
+    margin-right: 2%
+}
+
+.avatar-emoji img {
+    width: 100%;
+    margin: auto;
 }
 
 .feature-photo {
