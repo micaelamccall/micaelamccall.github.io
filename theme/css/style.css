@@ -979,7 +979,13 @@ img {
 }
 
 .inner {
-    max-width: 32em;
+    max-width: 38em;
+    margin: 0 auto;
+    padding: 0 2em
+}
+
+.inner-page {
+    max-width: 45em;
     margin: 0 auto;
     padding: 0 2em
 }
@@ -1309,6 +1315,7 @@ img {
     margin-top: 1.333em
 }
 
+
 .container {
     position: relative
 }
@@ -1384,7 +1391,7 @@ img {
 
 .post {
     position: relative;
-    padding-top: 2em;
+    padding-top: 0em;
     z-index: 10
 }
 
@@ -1567,7 +1574,7 @@ img {
 .post-author-avatar img {
     width: 100%;
     margin: auto;
-    border-radius: 10em;
+    /* border-radius: 10em; */
     box-sizing: border-box
 }
 
@@ -1576,14 +1583,15 @@ img {
     z-index: 1;
     float: right;
     width: 50%;
-    margin: 0 5%;
+    margin-left: 5%;
+    margin-right: 0%;
     box-shadow: 0 2px 4px rgba(0, 0, 0.2, 0.2)
 }
 
 .post-author-avatar-main img {
     width: 100%;
     margin: auto;
-    border: 0.125em solid #fff
+    /* border: 0.125em solid #fff */
 }
 
 .avatar-emoji {
@@ -1933,6 +1941,10 @@ img {
     .post-nav i {
         font-size: 1.5em
     }
+    .post-author-avatar-main{
+        width:100%;
+        margin-bottom:10%
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -1994,6 +2006,10 @@ img {
     }
     .post-nav-prev i {
         margin-right: -1em
+    }
+    .post-author-avatar-main{
+        width:100%;
+        margin-bottom:10%
     }
 }
 
