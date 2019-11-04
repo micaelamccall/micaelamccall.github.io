@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 
-  <title>Factor analysis of non-verbal behavior</title>
+  <title>Reducing dimensions of non-verbal behavior</title>
 
 
   <meta name="HandheldFriendly" content="True" />
@@ -38,7 +38,7 @@
 
 
 
-    <meta name="description" content="R | Data tidying | Unsupervised learning | Dimensionality reduction | Factor analysis | Visualization">
+    <meta name="description" content="R, data tidying, unsupervised learning, dimensionality reduction, factor analysis, visualization">
 
     <meta name="author" content="micaelavmccall">
 
@@ -48,8 +48,8 @@
 
 <!-- Open Graph -->
 <meta property="og:site_name" content="Micaela's Portfolio"/>
-<meta property="og:title" content="Factor analysis of non-verbal behavior"/>
-<meta property="og:description" content="R | Data tidying | Unsupervised learning | Dimensionality reduction | Factor analysis | Visualization"/>
+<meta property="og:title" content="Reducing dimensions of non-verbal behavior"/>
+<meta property="og:description" content="R, data tidying, unsupervised learning, dimensionality reduction, factor analysis, visualization"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="/projects/nonverbal-factor-analysis"/>
 <meta property="og:type" content="article"/>
@@ -65,8 +65,8 @@
 {
   "@context": "http://schema.org",
   "@type": "Article",
-  "name": "Factor analysis of non-verbal behavior",
-  "headline": "Factor analysis of non-verbal behavior",
+  "name": "Reducing dimensions of non-verbal behavior",
+  "headline": "Reducing dimensions of non-verbal behavior",
   "datePublished": "2018-05-30 00:00:00-04:00",
   "dateModified": "",
   "author": {
@@ -76,7 +76,7 @@
   },
   "image": "/images/nonverbal.jpeg",
   "url": "/projects/nonverbal-factor-analysis",
-  "description": "R | Data tidying | Unsupervised learning | Dimensionality reduction | Factor analysis | Visualization"
+  "description": "R, data tidying, unsupervised learning, dimensionality reduction, factor analysis, visualization"
 }
 </script>
 </head>
@@ -113,12 +113,12 @@
             <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
           </span>
         </nav>
-        <h1 class="post-title">Factor analysis of non-verbal behavior</h1>
+        <h1 class="post-title">Reducing dimensions of non-verbal behavior</h1>
         <!-- TODO : Proper class for headline -->
-        <!--             <span class="blog-description">R | Data tidying | Unsupervised learning | Dimensionality reduction | Factor analysis | Visualization</span>
+        <!--             <span class="blog-description">R, data tidying, unsupervised learning, dimensionality reduction, factor analysis, visualization</span>
  -->
         <span class="post-meta">
-              <span>R | Data tidying | Unsupervised learning | Dimensionality reduction | Factor analysis | Visualization</span>
+              <span>R, data tidying, unsupervised learning, dimensionality reduction, factor analysis, visualization</span>
             <!--                 <a href="/micaelavmccall">Micaela McCall</a>
             | <time datetime="Wed 30 May 2018">Wed 30 May 2018</time> -->
         </span>
@@ -403,10 +403,11 @@ div.cell.selected.jupyter-soft-selected:before {
 }
 .prompt {
   /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
-  min-width: 14ex;
+  min-width: 10ex; /* I changed from 14 */
   /* This padding is tuned to match the padding on the CodeMirror editor. */
   padding: 0.4em;
   margin: 0px;
+  margin-left: -10ex; /* i added */
   font-family: monospace;
   text-align: right;
   /* This has to match that of the the CodeMirror class line-height below */
@@ -421,9 +422,10 @@ div.cell.selected.jupyter-soft-selected:before {
   /* Use default cursor */
   cursor: default;
 }
-@media (max-width: 540px) {
+@media (max-width: 800px) { /* i changed from 540 */
   .prompt {
     text-align: left;
+    margin: 0px /* I added this */
   }
 }
 div.inner_cell {
@@ -1253,7 +1255,7 @@ h6:hover .anchor-link {
 <p>Factor analysis uncovers latent dimensions or "factors" from a large number of related variables. It can be used to reveal insights about which variables group together through positive and negative correlations.</p>
 <p>Since my original dataset contains sensitive patient data, I used here results from the <a href="https://openpsychometrics.org/tests/NIS/">Nonverbal Immediacy Scale from Open Psychometrics</a>.</p>
 <p>This data is in the format of survey ratings in which the respondants say how often they perform an action (never, rarely, occasionally, often, very often). This Likert-type data is widely encountered in psychology and market research. In these contexts, factor analysis is a useful tool for translating numerous responses into generalizable constructs and actional inferences (e.g. about a consumer's likelihood to display a certain type of behavior or buy a certain type of product).</p>
-<h5 id="View-project-on-Github"><a href="https://github.com/micaelamccall/nonverbal-behavior-FA">View project on Github</a><a class="anchor-link" href="#View-project-on-Github">&#182;</a></h5>
+<h5 id="View-project-on-GitHub"><a href="https://github.com/micaelamccall/nonverbal-behavior-FA">View project on GitHub</a><a class="anchor-link" href="#View-project-on-GitHub">&#182;</a></h5>
 </div>
 </div>
 </div>
@@ -1332,7 +1334,8 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -1350,7 +1353,8 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -2227,7 +2231,8 @@ gAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYH4E/h9r7h/v2d0/RQAAAABJRU5ErkJggg=="
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2238,7 +2243,8 @@ gAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYH4E/h9r7h/v2d0/RQAAAABJRU5ErkJggg=="
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -3264,7 +3270,8 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -3357,7 +3364,8 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -3403,7 +3411,8 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -3501,25 +3510,17 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Future">Future<a class="anchor-link" href="#Future">&#182;</a></h2><p>An exploratory factor analysis can be used to create a model to generate scores for each observation on each new dimension (factor). This is useful for feature extraction and engineer for future data analysis.</p>
-<h2 id="References">References<a class="anchor-link" href="#References">&#182;</a></h2><p>Courtney, Matthew Gordon Ray. (2013). Determining the Number of Factors to Retain in EFA: Using the SPSS R-Menu v2.0 to Make More Judicious Estimations. <em>Practical Assessment, Research &amp; Evaluation, 18</em>(8).</p>
-<p>Norris, Megan and Luc Lecavelier. (2010). Evaluating the Use of Exploratory Factor Analysis in Developmental Disability Psychological Research. <em>J Autism Dev Disord, 40,</em> 8–20.</p>
-<p>Zygmont, Conrad and Mario R. Smith (2014). Robust factor analysis in the presence of normality violations, missing data, and outliers: Empirical questions and possible solutions. <em>The Quantitative Methods for Psychology, 10</em>(1), 40-55.</p>
+<h2 id="References">References<a class="anchor-link" href="#References">&#182;</a></h2><ul>
+<li><p>Courtney, Matthew Gordon Ray. (2013). Determining the Number of Factors to Retain in EFA: Using the SPSS R-Menu v2.0 to Make More Judicious Estimations. <em>Practical Assessment, Research &amp; Evaluation, 18</em>(8).</p>
+</li>
+<li><p>Norris, Megan and Luc Lecavelier. (2010). Evaluating the Use of Exploratory Factor Analysis in Developmental Disability Psychological Research. <em>J Autism Dev Disord, 40,</em> 8–20.</p>
+</li>
+<li><p>Zygmont, Conrad and Mario R. Smith (2014). Robust factor analysis in the presence of normality violations, missing data, and outliers: Empirical questions and possible solutions. <em>The Quantitative Methods for Psychology, 10</em>(1), 40-55.</p>
+</li>
+</ul>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
  
 

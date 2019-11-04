@@ -1321,7 +1321,7 @@ img {
 }
 
 .container .post {
-    padding: 4em 0
+    padding: 1em 0
 }
 
 .container .post:after {
@@ -1637,7 +1637,8 @@ img {
     position: relative;
     float: right;
     width: 40%;
-    margin: 5%;
+    margin: 2%;
+    margin-top: 0px;
     overflow: hidden;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
