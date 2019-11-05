@@ -38,7 +38,7 @@
 
 
 
-    <meta name="description" content="R, data tidying, unsupervised learning, dimensionality reduction, factor analysis, visualization">
+    <meta name="description" content="R, data cleaning, unsupervised learning, dimensionality reduction, factor analysis, visualization">
 
     <meta name="author" content="micaelavmccall">
 
@@ -49,7 +49,7 @@
 <!-- Open Graph -->
 <meta property="og:site_name" content="Micaela's Portfolio"/>
 <meta property="og:title" content="Reducing dimensions of non-verbal behavior"/>
-<meta property="og:description" content="R, data tidying, unsupervised learning, dimensionality reduction, factor analysis, visualization"/>
+<meta property="og:description" content="R, data cleaning, unsupervised learning, dimensionality reduction, factor analysis, visualization"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="/projects/nonverbal-factor-analysis"/>
 <meta property="og:type" content="article"/>
@@ -76,7 +76,7 @@
   },
   "image": "/images/nonverbal.jpeg",
   "url": "/projects/nonverbal-factor-analysis",
-  "description": "R, data tidying, unsupervised learning, dimensionality reduction, factor analysis, visualization"
+  "description": "R, data cleaning, unsupervised learning, dimensionality reduction, factor analysis, visualization"
 }
 </script>
 </head>
@@ -115,10 +115,10 @@
         </nav>
         <h1 class="post-title">Reducing dimensions of non-verbal behavior</h1>
         <!-- TODO : Proper class for headline -->
-        <!--             <span class="blog-description">R, data tidying, unsupervised learning, dimensionality reduction, factor analysis, visualization</span>
+        <!--             <span class="blog-description">R, data cleaning, unsupervised learning, dimensionality reduction, factor analysis, visualization</span>
  -->
         <span class="post-meta">
-              <span>R, data tidying, unsupervised learning, dimensionality reduction, factor analysis, visualization</span>
+              <span>R, data cleaning, unsupervised learning, dimensionality reduction, factor analysis, visualization</span>
             <!--                 <a href="/micaelavmccall">Micaela McCall</a>
             | <time datetime="Wed 30 May 2018">Wed 30 May 2018</time> -->
         </span>
@@ -921,14 +921,14 @@ div.output_area pre {
    the prompt div. */
 div.output_subarea {
   overflow-x: auto;
-  padding: 0.4em;
+  padding: 1.5em;
   /* Old browsers */
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-  max-width: calc(100% - 14ex);
+  /* max-width: calc(100% - 14ex); */
 }
 div.output_scroll div.output_subarea {
   overflow-x: visible;
@@ -1253,22 +1253,37 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This project is based on an analysis I did for my honors thesis in neuroscience: analyzing non-verbal behavior in a sample of depressed patients over 6 months of treatment. I had collected data on the frequencies of a number of non-verbal behaviors, and I wished to reduce the number of variables before performing furhter analysis.</p>
 <p>Factor analysis uncovers latent dimensions or "factors" from a large number of related variables. It can be used to reveal insights about which variables group together through positive and negative correlations.</p>
-<p>Since my original dataset contains sensitive patient data, I used here results from the <a href="https://openpsychometrics.org/tests/NIS/">Nonverbal Immediacy Scale from Open Psychometrics</a>.</p>
+<h2 id="Project-goals-&amp;-Dataset">Project goals &amp; Dataset<a class="anchor-link" href="#Project-goals-&amp;-Dataset">&#182;</a></h2><p>Since my original dataset contains sensitive patient data, I used here results from the <a href="https://openpsychometrics.org/tests/NIS/">Nonverbal Immediacy Scale from Open Psychometrics</a>.</p>
 <p>This data is in the format of survey ratings in which the respondants say how often they perform an action (never, rarely, occasionally, often, very often). This Likert-type data is widely encountered in psychology and market research. In these contexts, factor analysis is a useful tool for translating numerous responses into generalizable constructs and actional inferences (e.g. about a consumer's likelihood to display a certain type of behavior or buy a certain type of product).</p>
-<h5 id="View-project-on-GitHub"><a href="https://github.com/micaelamccall/nonverbal-behavior-FA">View project on GitHub</a><a class="anchor-link" href="#View-project-on-GitHub">&#182;</a></h5>
+<p>In this project, I aimed to identify the latent dimensions underlying the frequencies of non-verbal behaviors reported by individuals surveyed in this dataset.</p>
+<h2 id="Summary-of-findings">Summary of findings<a class="anchor-link" href="#Summary-of-findings">&#182;</a></h2><p>I found eight latent dimensions using the Principle Axis (PA) factoring method and oblique rotation (which allows the factors to be correlated). I named them conceptually:</p>
+<ul>
+<li>PA Factor 1:  "Flat affect", </li>
+<li>PA Factor 2:  "Talking with hands", </li>
+<li>PA Factor 3:  "Close physical proximity", </li>
+<li>PA Factor 4:  "Strong eye contact", </li>
+<li>PA Factor 5:  "Stiff body position", </li>
+<li>PA Factor 6:  "Touch", </li>
+<li>PA Factor 7:  "Vocal expressiveness", </li>
+<li>PA Factor 8:  "Positive affect"</li>
+</ul>
+<h5 id="View-project-on-GitHub"><a href="https://github.com/micaelamccall/nonverbal-behavior-FA">View project on GitHub</a><a class="anchor-link" href="#View-project-on-GitHub">&#182;</a></h5><hr>
+<h2 id="Full-project">Full project<a class="anchor-link" href="#Full-project">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Load-the-data">Load the data<a class="anchor-link" href="#Load-the-data">&#182;</a></h2>
+<h3 id="Import-the-data">Import the data<a class="anchor-link" href="#Import-the-data">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">messy_data</span><span class="o">&lt;-</span><span class="nf">read.delim</span><span class="p">(</span><span class="s">&quot;../NIS_data/data.csv&quot;</span><span class="p">,</span> <span class="n">na.strings</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;NA&quot;</span><span class="p">))</span>
@@ -1291,7 +1306,9 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">NIS_clean</span><span class="o">&lt;-</span><span class="n">messy_data[1</span><span class="o">:</span><span class="m">5000</span><span class="p">,</span> <span class="n">]</span><span class="o">%&gt;%</span> <span class="c1">#take just the first 5,000 observations of this massive dataset</span>
@@ -1317,7 +1334,9 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">mvn</span><span class="p">(</span><span class="n">NIS_clean[1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">NIS_clean</span><span class="p">),</span> <span class="n">]</span><span class="p">,</span> <span class="n">mvnTest</span> <span class="o">=</span> <span class="s">&quot;hz&quot;</span><span class="p">,</span> <span class="n">multivariatePlot</span> <span class="o">=</span> <span class="s">&quot;qq&quot;</span><span class="p">)</span><span class="o">$</span><span class="n">multivariateNormality</span> 
@@ -1335,7 +1354,9 @@ h6:hover .anchor-link {
 <div class="output_area">
 
     
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">
+        Out[]:
+    </div>
 
 
 
@@ -1354,7 +1375,9 @@ h6:hover .anchor-link {
 <div class="output_area">
 
     
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">
+        Out[]:
+    </div>
 
 
 
@@ -2193,7 +2216,9 @@ gAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYH4E/h9r7h/v2d0/RQAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">NIS_m</span><span class="o">&lt;-</span><span class="nf">data.matrix</span><span class="p">(</span><span class="n">NIS_clean</span><span class="p">)</span> <span class="c1">#save data as matrix</span>
@@ -2215,7 +2240,9 @@ gAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYH4E/h9r7h/v2d0/RQAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">psych</span><span class="o">::</span><span class="nf">fa.parallel</span><span class="p">(</span><span class="n">pcor</span><span class="p">,</span> <span class="n">n.obs</span> <span class="o">=</span> <span class="m">3633</span><span class="p">,</span> <span class="n">fm</span> <span class="o">=</span> <span class="s">&quot;pa&quot;</span><span class="p">,</span> <span class="n">fa</span> <span class="o">=</span> <span class="s">&quot;fa&quot;</span><span class="p">)</span>
@@ -2232,7 +2259,9 @@ gAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYH4E/h9r7h/v2d0/RQAAAABJRU5ErkJggg=="
 <div class="output_area">
 
     
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">
+        Out[]:
+    </div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2244,7 +2273,9 @@ gAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYH4E/h9r7h/v2d0/RQAAAABJRU5ErkJggg=="
 <div class="output_area">
 
     
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">
+        Out[]:
+    </div>
 
 
 
@@ -3231,7 +3262,9 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">fac</span> <span class="o">&lt;-</span> <span class="n">psych</span><span class="o">::</span><span class="nf">fa</span><span class="p">(</span><span class="n">pcor</span><span class="p">,</span> <span class="n">nfactors</span><span class="o">=</span><span class="m">8</span><span class="p">,</span> <span class="n">fm</span><span class="o">=</span><span class="s">&quot;pa&quot;</span><span class="p">,</span> <span class="n">n.obs</span><span class="o">=</span><span class="m">3633</span><span class="p">,</span> <span class="n">rotate</span><span class="o">=</span><span class="s">&quot;oblimin&quot;</span><span class="p">)</span>
@@ -3252,7 +3285,9 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Root mean square of the residuals:&quot;</span><span class="p">,</span> <span class="n">fac</span><span class="o">$</span><span class="n">rms</span><span class="p">))</span>
@@ -3271,7 +3306,9 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 <div class="output_area">
 
     
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">
+        Out[]:
+    </div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -3305,7 +3342,9 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">fa_loadings</span> <span class="o">&lt;-</span> <span class="n">fac</span><span class="o">$</span><span class="n">loadings</span><span class="o">%&gt;%</span>
@@ -3331,7 +3370,9 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1">#set up empty list:</span>
@@ -3365,7 +3406,9 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 <div class="output_area">
 
     
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">
+        Out[]:
+    </div>
 
 
 
@@ -3389,7 +3432,9 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">fa_loadings</span><span class="o">$</span><span class="n">Question_txt</span><span class="o">&lt;-</span><span class="nf">factor</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;I use my hands and arms to gesture while talking to people. &quot;</span><span class="p">,</span><span class="s">&quot;I touch others on the shoulder or arm while talking to them. &quot;</span><span class="p">,</span><span class="s">&quot;I use a monotone or dull voice while talking to people. &quot;</span><span class="p">,</span><span class="s">&quot;I look over or away from others while talking to them. &quot;</span><span class="p">,</span><span class="s">&quot;I move away from others when they touch me while we are talking. &quot;</span><span class="p">,</span><span class="s">&quot;I have a relaxed body position when I talk to people. &quot;</span><span class="p">,</span> <span class="s">&quot;I frown while talking to people. &quot;</span><span class="p">,</span><span class="s">&quot;I avoid eye contact while talking to people. &quot;</span><span class="p">,</span> <span class="s">&quot;I have a tense body position while talking to people. &quot;</span><span class="p">,</span><span class="s">&quot;I sit close or stand close to people while talking with them. &quot;</span><span class="p">,</span><span class="s">&quot;My voice is monotonous or dull when I talk to people. &quot;</span><span class="p">,</span><span class="s">&quot;I use a variety of vocal expressions when I talk to people. &quot;</span><span class="p">,</span> <span class="s">&quot;I gesture when I talk to people. &quot;</span><span class="p">,</span><span class="s">&quot;I am animated when I talk to people. &quot;</span><span class="p">,</span><span class="s">&quot;I have a bland facial expression when I talk to people. &quot;</span><span class="p">,</span><span class="s">&quot;I move closer to people when I talk to them. &quot;</span><span class="p">,</span><span class="s">&quot;I look directly at people while talking to them. &quot;</span><span class="p">,</span><span class="s">&quot;I am stiff when I talk to people. &quot;</span><span class="p">,</span><span class="s">&quot;I have a lot of vocal variety when I talk to people. &quot;</span><span class="p">,</span><span class="s">&quot;I avoid gesturing while I am talking to people. &quot;</span><span class="p">,</span><span class="s">&quot;I lean toward people when I talk to them. &quot;</span><span class="p">,</span><span class="s">&quot;I maintain eye contact with people when I talk to them. &quot;</span><span class="p">,</span><span class="s">&quot;I try not to sit or stand close to people when I talk with them. &quot;</span><span class="p">,</span><span class="s">&quot;I lean away from people when I talk to them. &quot;</span><span class="p">,</span><span class="s">&quot;I smile when I talk to people. &quot;</span><span class="p">,</span><span class="s">&quot;I avoid touching people when I talk to them.&quot;</span><span class="p">))</span>
@@ -3412,7 +3457,9 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 <div class="output_area">
 
     
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">
+        Out[]:
+    </div>
 
 
 
@@ -3446,7 +3493,9 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1">#semPlot doesn&#39;t seem to work in jupyter notebooks, but here is the code to make the below plot</span>
