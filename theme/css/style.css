@@ -1327,7 +1327,7 @@ img {
 .container .post:after {
     position: absolute;
     width: 32em;
-    height: 1px;
+    height: 3px;
     left: 50%;
     bottom: 0;
     margin-left: -16em;
@@ -1641,7 +1641,7 @@ img {
     margin-top: 0px;
     overflow: hidden;
     background: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1)
 }
 
 .feature-photo img {
@@ -1992,8 +1992,8 @@ img {
     }
     .post-content img,
     .post-content .fluid-width-video-wrapper {
-        width: 100%;
-        margin-left: auto
+        width: 110%;
+        margin-left: -5%
     }
     .post-nav:after {
         display: none
@@ -2049,6 +2049,11 @@ img {
 @media only screen and (max-width: 320px) {
     .pagination .pagination-label {
         display: none
+    }
+    .post-content img,
+    .post-content .fluid-width-video-wrapper {
+        width: 110%;
+        margin-left: -5%
     }
 }
 
