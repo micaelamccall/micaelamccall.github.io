@@ -1592,10 +1592,10 @@ img {
 .post-author-avatar-main {
     position: relative;
     z-index: 1;
-    float: right;
-    width: 50%;
-    margin-left: 5%;
-    margin-right: 0%;
+    float: left;
+    width: 20%;
+    margin-left: 20%;
+    margin-right: 5%;
     box-shadow: 0 2px 4px rgba(0, 0, 0.2, 0.2)
 }
 
@@ -1968,8 +1968,7 @@ img {
         font-size: 1.5em
     }
     .post-author-avatar-main{
-        width:100%;
-        margin-bottom:10%
+        margin-left:10%
     }
 }
 
@@ -2034,8 +2033,10 @@ img {
         margin-right: -1em
     }
     .post-author-avatar-main{
-        width:100%;
-        margin-bottom:10%
+        width:90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 10%
     }
     .image-page {
         width: 100%;
