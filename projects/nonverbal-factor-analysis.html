@@ -1280,7 +1280,7 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Importing-the-data">Importing the data<a class="anchor-link" href="#Importing-the-data">&#182;</a></h3>
+<h3 id="Import-and-check-the-data">Import and check the data<a class="anchor-link" href="#Import-and-check-the-data">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -1302,7 +1302,7 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Clean-the-data">Clean the data<a class="anchor-link" href="#Clean-the-data">&#182;</a></h2><p>The messy dataset contains NIS measures as well as demographic, ten item personality inventory, and word checks.</p>
+<h2 id="First-things-first:-clean-the-data">First things first: clean the data<a class="anchor-link" href="#First-things-first:-clean-the-data">&#182;</a></h2><p>The messy dataset contains NIS measures as well as demographic, ten item personality inventory, and word checks.</p>
 <p>The word checks can be used to determine responses that aren't reliable (perhaps a person was not answering the survey thoughtfully or wasn't paying attention)</p>
 <p>The following code possibly invalid responses, and retaining only the data of interest (the question ratings).</p>
 
@@ -3259,7 +3259,7 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 <p>The following code performs and prints the factor analysis.</p>
 <ul>
 <li>The factor method is Principal Axis ("pa"). This method is best for non-normally distributed data.</li>
-<li>The rotation is "oblimin", a standard oblique rotation, meaning that the it allows the extracted factors to be correlated with each other. I chose "oblimin" because factors in this dataset are all related to a common construct and are likely to be correlated. The purpose of rotations is to "obtain simple structure in order to enhance interpretability of the solution" (Norris). </li>
+<li>The rotation is "oblimin", a standard oblique rotation, meaning that the it allows the extracted factors to be correlated with each other. I chose "oblimin" because factors in this dataset are all related to a common construct and are likely to be correlated. The purpose of rotations is to "obtain simple structure in order to enhance interpretability of the solution" (Norris 2010). </li>
 </ul>
 
 </div>
@@ -3331,7 +3331,12 @@ DIH/B0fZ5q3Q7uT4AAAAAElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The above model is a good fit: root mean square of residuals is close to 0, the Tucker Lewis index is close to 1, and RMSEA index is &lt; 0.05.</p>
+<p>The above model is a good fit:</p>
+<ul>
+<li>RSMR (discrepancy between the sample covariance matrix and the model covariance matrix) is close to 0</li>
+<li>the Tucker Lewis index, (discrepancy between the chi-squared value of the hypothesized model and the chi-squared value of the null model), is close to 1, which mean the discrepancy is minimal (0.95 is often used as a cutoff for this metric)</li>
+<li>and RMSEA (discrepancy between the hypothesized model and the population covariance matrix) is &lt; 0.05</li>
+</ul>
 
 </div>
 </div>
