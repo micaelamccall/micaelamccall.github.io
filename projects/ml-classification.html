@@ -1263,7 +1263,7 @@ h6:hover .anchor-link {
 <h3 id="Project-Goals">Project Goals<a class="anchor-link" href="#Project-Goals">&#182;</a></h3><p>In this project, I explored the ability of three supervised learning algorithms to predict whether an individual has used a specific drug. I explored and visualized parameter selection for each model, as well as how metrics can help us select the best model for a problem.</p>
 <h3 id="Summary-of-findings">Summary of findings<a class="anchor-link" href="#Summary-of-findings">&#182;</a></h3><p>Based on test-set accuracy (0.76) and ROC AUC (0.81), I found that the SVC model performed better than other models in predicting whether or not an individaul had used cannabis.</p>
 <hr>
-<h2 id="Full-project">Full project<a class="anchor-link" href="#Full-project">&#182;</a></h2><h3 id="Importing-the-data:">Importing the data:<a class="anchor-link" href="#Importing-the-data:">&#182;</a></h3>
+<h2 id="Full-project">Full project<a class="anchor-link" href="#Full-project">&#182;</a></h2><h3 id="Importing-the-data">Importing the data<a class="anchor-link" href="#Importing-the-data">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -1535,13 +1535,9 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Note:</p>
-<ol>
-<li>I want to do binary classification, so I need to change the drug columns to be a binary (0 and 1).</li>
-<li>Gender, Ethnicity, Education, and Country are encoded as real numbers. However, there is no ordering betwen the levels of these features, so they should be treated as discrete. </li>
-<li>The personality scores are scaled to a mean of 0 and standard deviation of 1 already, so these features don't need to be processed. </li>
-</ol>
-<h3 id="Below-are-a-couple-of-functions-to-deal-with-(1)-and-(2)">Below are a couple of functions to deal with (1) and (2)<a class="anchor-link" href="#Below-are-a-couple-of-functions-to-deal-with-(1)-and-(2)">&#182;</a></h3>
+<h2 id="Processing-the-data">Processing the data<a class="anchor-link" href="#Processing-the-data">&#182;</a></h2><p><strong>1. Changing drug consumption to be a binary outcome</strong></p>
+<p>I want to do binary classification, so I need to change the drug columns to be a binary (0 and 1).</p>
+
 </div>
 </div>
 </div>
@@ -1587,8 +1583,30 @@ h6:hover .anchor-link {
     <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">repl_dict</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">df</span>
+</pre></div>
 
-<span class="k">def</span> <span class="nf">new_categories</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">newcat</span><span class="p">):</span>
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>2. Changing Gender, Ethnicity, Education, and Country to be categorical variables</strong></p>
+<p>These features are currently encoded as real numbers. However, there is no ordering betwen the levels of these features, so they should be treated as discrete.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+        In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">new_categories</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">newcat</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">    Function to replace categories in a variables with new category names</span>
 <span class="sd">    </span>
@@ -1627,7 +1645,10 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Time-to-apply-these-functions-and-to-clean-up-the-data">Time to apply these functions and to clean up the data<a class="anchor-link" href="#Time-to-apply-these-functions-and-to-clean-up-the-data">&#182;</a></h2>
+<p><strong>3. The personality scores don't need to be processed</strong></p>
+<p>These features are scaled to a mean of 0 and standard deviation of 1 already.</p>
+<p>Below, I applied the above functions to clean up the data.</p>
+
 </div>
 </div>
 </div>
@@ -1889,7 +1910,7 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Next,-I-needed-to-select-a-target-variable-for-classification">Next, I needed to select a target variable for classification<a class="anchor-link" href="#Next,-I-needed-to-select-a-target-variable-for-classification">&#182;</a></h2><p>I want to pick one that isn't too unevenly distributed, so here I checked the response counts for each drug:</p>
+<h2 id="Selecting-a-target-variable-for-classification">Selecting a target variable for classification<a class="anchor-link" href="#Selecting-a-target-variable-for-classification">&#182;</a></h2><p>I want to pick one that isn't too unevenly distributed, so here I checked the response counts for each drug:</p>
 
 </div>
 </div>
@@ -2047,7 +2068,7 @@ Name: VSA, dtype: int64
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Now,-let's-explore-this-dataset">Now, let's explore this dataset<a class="anchor-link" href="#Now,-let's-explore-this-dataset">&#182;</a></h2>
+<h2 id="Exploring-the-dataset">Exploring the dataset<a class="anchor-link" href="#Exploring-the-dataset">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -2254,7 +2275,7 @@ Proportion each response:
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Because 64% of responses are in class 1, there would be a baseline accuracy of 0.64 if we predicted all responses to be class 1</strong></p>
-<h2 id="Time-to-get-ready-for-maching-learning">Time to get ready for maching learning<a class="anchor-link" href="#Time-to-get-ready-for-maching-learning">&#182;</a></h2><p>First, we split the data into train and test sets for machine learning</p>
+<h2 id="Time-to-get-ready-for-maching-learning">Time to get ready for maching learning<a class="anchor-link" href="#Time-to-get-ready-for-maching-learning">&#182;</a></h2><p>First, I split the data into train and test sets for machine learning</p>
 
 </div>
 </div>
@@ -2282,7 +2303,7 @@ Proportion each response:
 <p>For preprocessing, we need to one-hot encode the Gender, Ethnicity, Education, and Country features. For some models, we would also need to scale the numerical features Upper_Age and Lower_Age.</p>
 <p>For hyperparameters, it's best to test a number of values to determine the best fit.</p>
 <p>Both preprocessing and hyperparameter adjustment can be included in a GridSearch object from sklearn.</p>
-<h4 id="By-what-metric-should-we-select-hyperparameters?">By what metric should we select hyperparameters?<a class="anchor-link" href="#By-what-metric-should-we-select-hyperparameters?">&#182;</a></h4><p>Because this this data is slightly imbalanced, ROC-AUC may be a better evaluation metric than accuracy (as noted, baseline accuracy would be 0.64).</p>
+<h4 id="By-what-metric-should-I-select-hyperparameters?">By what metric should I select hyperparameters?<a class="anchor-link" href="#By-what-metric-should-I-select-hyperparameters?">&#182;</a></h4><p>Because this this data is slightly imbalanced, ROC-AUC may be a better evaluation metric than accuracy (as noted, baseline accuracy would be 0.64).</p>
 <p>Area under the ROC curve shows the probability that a value of the positive class will have a higher score than one of the negative class according to the decision function of the model.</p>
 <p>The below function is a wrapper for a GridSearchCV object that searches for the best parameters for a classifier, reports a number of metrics for the classifier, and refits on a metric of choice. It also produces a heatmap for cross validation results so we can visualize if we are searching the best hyperparameter space.</p>
 
@@ -2420,8 +2441,9 @@ Proportion each response:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Time-to-train-the-models-and-select-the-best-hyperparamters-for-each-one">Time to train the models and select the best hyperparamters for each one<a class="anchor-link" href="#Time-to-train-the-models-and-select-the-best-hyperparamters-for-each-one">&#182;</a></h2><p>Now, we can apply this function to several supervised learning algorithms in order to visualize the parameter space and modify searches.</p>
-<h3 id="We'll-start-with-Logistic-regression">We'll start with Logistic regression<a class="anchor-link" href="#We'll-start-with-Logistic-regression">&#182;</a></h3>
+<h2 id="Training-the-models">Training the models<a class="anchor-link" href="#Training-the-models">&#182;</a></h2><p><strong>and selecting the best hyperparamters for each one</strong></p>
+<p>Next, I applied this function to several supervised learning algorithms in order to visualize the parameter space and modify searches.</p>
+<h3 id="1.-Logistic-regression">1. Logistic regression<a class="anchor-link" href="#1.-Logistic-regression">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -2550,7 +2572,7 @@ Best cross-val accuracy score: 0.77
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>An ROC-AUC score of 0.73 is ok, but not awesome. It's definitely worth seeing if another model would produce better results.</p>
-<h3 id="Next,-we'll-look-at-SVC-(support-vector-classifier)">Next, we'll look at SVC (support vector classifier)<a class="anchor-link" href="#Next,-we'll-look-at-SVC-(support-vector-classifier)">&#182;</a></h3>
+<h3 id="2.-SVC-(support-vector-classifier)">2. SVC (support vector classifier)<a class="anchor-link" href="#2.-SVC-(support-vector-classifier)">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -2710,7 +2732,7 @@ Best cross-val accuracy score: 0.77
 <p>This seems like a better parameter grid space because the plot is filled up with evenly with the higher cross-val scores.</p>
 <p>But, the best parameters are the same as the ones we found in the first grid search.</p>
 <p>The best ROC AUC from cross validation is slightly higher! But still not awesome.</p>
-<h3 id="Last,-we'll-try-a-Random-Forest-classifier">Last, we'll try a Random Forest classifier<a class="anchor-link" href="#Last,-we'll-try-a-Random-Forest-classifier">&#182;</a></h3><p>RF is the average of a number of decision tree classifiers with some randomness injected into the tree-building process.</p>
+<h3 id="3.-Random-Forest-classifier">3. Random Forest classifier<a class="anchor-link" href="#3.-Random-Forest-classifier">&#182;</a></h3><p>RF is the average of a number of decision tree classifiers with some randomness injected into the tree-building process.</p>
 
 </div>
 </div>
@@ -2797,10 +2819,10 @@ Best cross-val accuracy score: 0.77
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The best ROC AUC score for cross validation isn't better than SVC. 
-<strong>Therefore, it looks like SVC is the best model.</strong></p>
+<p>The best ROC AUC score for cross validation isn't better than SVC.</p>
+<p><strong>Therefore, it looks like SVC is the best model.</strong></p>
 <hr>
-<h2 id="Another-way-to-determine-the-best-model">Another way to determine the best model<a class="anchor-link" href="#Another-way-to-determine-the-best-model">&#182;</a></h2><p>Alternatively, we can do a grid search between the models and parameters together, as shown here:</p>
+<h2 id="Using-one-function-to-determine-the-best-model">Using one function to determine the best model<a class="anchor-link" href="#Using-one-function-to-determine-the-best-model">&#182;</a></h2><p>Alternatively, we can do a grid search between the models and parameters together, as shown here:</p>
 
 </div>
 </div>
@@ -2884,7 +2906,7 @@ Best cross-val score: 0.75
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>This grid search also came up with the same conclusion: SVC is the best estimator, with the above params</strong></p>
-<h2 id="We-are-ready-to-generate-predictions!">We are ready to generate predictions!<a class="anchor-link" href="#We-are-ready-to-generate-predictions!">&#182;</a></h2><p>Now that SVC was determined to be the best model, we can generate predictions on the test set and inspect their metrics.</p>
+<h2 id="Time-to-generate-predictions!">Time to generate predictions!<a class="anchor-link" href="#Time-to-generate-predictions!">&#182;</a></h2><p>Now that SVC was determined to be the best model, we can generate predictions on the test set and inspect their metrics.</p>
 
 </div>
 </div>
@@ -3060,7 +3082,7 @@ weighted avg       0.76      0.76      0.76       470
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Looks like the default threshold for the decision function is in a pretty good spot, so this is probably the optimal model</strong></p>
-<h2 id="Feature-importances">Feature importances<a class="anchor-link" href="#Feature-importances">&#182;</a></h2><p>Although the SVC was the highest performing model, I wanted to extract feature importances from the Random Forest model in order to get an idea of which features were most predictive in that context.</p>
+<h2 id="Plotting-feature-importances">Plotting feature importances<a class="anchor-link" href="#Plotting-feature-importances">&#182;</a></h2><p>Although the SVC was the highest performing model, I wanted to extract feature importances from the Random Forest model in order to get an idea of which features were most predictive in that context.</p>
 
 </div>
 </div>
