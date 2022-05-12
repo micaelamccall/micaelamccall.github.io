@@ -1284,7 +1284,7 @@ h6:hover .anchor-link {
 <p>I like using Scrapy because of how easy it is to make modular scraping projects, structure scraped data, save to CSVs, and call spiders from different scripts.</p>
 <p>I ran into some problems with some news sites using JavaScript to dynamically render a list of news articles in a section (rather than pressing a 'next' button and getting a URL). While this latter case has some really good <a href="https://towardsdatascience.com/using-scrapy-to-build-your-own-dataset-64ea2d7d4673">tutorials</a> to deal with this situation, I had a harder time discovering the best way to scrape the JavaScript rendered pages.</p>
 <p>I decided to use Splash, a lightweight browser, to render the JavaScript of these websites before scraping them. After pulling Splash as a Docker image and running the container locally, I was able to render html versions of JavaScript pages to parse with Scrapy spiders.</p>
-<p>Splash also uses Lua scripts to interact with JavaScript elements. SplashRequest executes these scripts and renders the resulting html to be parsed. I wrote a Lua script that clicks on a "load more" button, and returns the html to parse and follow all the loaded article links on the page, which can then be accessed with a normal scrapy.Request.</p>
+<p>Splash uses Lua scripts to interact with JavaScript elements, so I wrote a Lua script that clicks on a "load more" button, returns the html to parse, and follows all the loaded article links on the page, which can then be accessed with a normal scrapy.Request.</p>
 <p>All of this happens in a normal scrapy.Spider object, so it can be crawled normally, as long as the Splash Docker image is running locally.</p>
 <h4 id="Below-is-an-example-of-the-scraping-process">Below is an example of the scraping process<a class="anchor-link" href="#Below-is-an-example-of-the-scraping-process">&#182;</a></h4><p>The code to scrape the articles is located in the <code>scrape_news</code> directory.</p>
 <p>The settings file contains the settings for scrapy and splash, as well as detemines which of the above publications to scrape from.</p>
@@ -1303,28 +1303,6 @@ h6:hover .anchor-link {
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-    <div class="prompt output_prompt">
-        Out[]:
-    </div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Verifying current working directory, which is: /Users/micamccall/Documents/python_projects/tech-news-cluster/tech_news_cluster
-Python is checking for modules in this directory
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -1781,9 +1759,9 @@ progress field natural language processing nlp depend existence language resourc
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Vectorization-of-text-data">Vectorization of text data<a class="anchor-link" href="#Vectorization-of-text-data">&#182;</a></h2><p>Now it's time to create the feature matrix that will be used in the KMeans model, which involves vectorizing the text data.</p>
-<p>Sometimes people use a bag-of-words representation, which is just a count of how many time each word in the whole corpus appears in each document.</p>
-<p>Instead of doing a pure count, you can also scale the feature based on the it's relative frequency. If a word appears a lot in some documents but not in most, it is likely to be informative; if it appears often in most documents, it likely isn't.</p>
-<p>This is done with a with tf-idf vectorizer (term-frequency inverse-document-frequency) from Scikit-learn. This function also applies L2 regularization, which makes it so that the length of the document does not change the representation.</p>
+<p>Sometimes people use a bag-of-words representation, which means creating a vector for each document in which each element represents the frequency, in that document, of every word that appears in the corpus.</p>
+<p>Instead of doing a pure count, you can also scale the frequency of each word in a document by it's relative frequency in all documents. If a word appears a lot in some documents but not in most, it is likely to be informative; if it appears often in most documents, it likely isn't. This is called tf-idf (term-frequency inverse-document-frequency) vectorization. The TfidfVectorizer object multiples the idf (inverse document frequency) vector by the document term frequency, which gives a lower score to terms that appear more frequently across all documents.</p>
+<p>This function also applies L2 regularization to the vector of tf-idf values, which makes it so that the length of the document does not change the representation.</p>
 
 </div>
 </div>
@@ -1809,7 +1787,8 @@ progress field natural language processing nlp depend existence language resourc
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I initialized the vectorizer with settings to use only words that appear in more than 5 documents, in order to cut back on tokens. Additionally, for unsuperized learning, sklearn recommends taking out common words, so I took out words that appear in more than 15% of documents</p>
 <p><strong>N-grams</strong></p>
-<p>The Tfidf Vectorizer will tokenize on combinations of words (n-grams) instead of just single words (1-gram). I chose to do 1-, 2-, and 3-grams because doing more can cause the number of features to explode.</p>
+<p>The Tfidf Vectorizer will calculate a tf-idf value for individual words (1-grams), or it can tokenize on combinations of words (n-grams) instead of just single words. I chose to do 1-, 2-, and 3-grams because doing more can cause the number of features to explode.</p>
+<p>Below the rows is the number of documents in the corpus, and the columns are the number of terms (1-, 2-, and 3-grams) in the corpus.</p>
 
 </div>
 </div>
@@ -1856,10 +1835,7 @@ progress field natural language processing nlp depend existence language resourc
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Inspecting-the-text-features">Inspecting the text features<a class="anchor-link" href="#Inspecting-the-text-features">&#182;</a></h2><p>Using the vectorizer to transform the data returns the sparse tf-idf weighted document-term matrix.</p>
-<p>The rows is the number of documents in the corpus, and the columns are the number of terms (1-, 2-, and 3-grams) in the corpus.</p>
-<p>To get that matrix, Tfidf Vectorizer multiples the idf (inverse document frequency) vector by the document term frequency. The idf gives lower score to terms that appear more frequently across documents because they are deemed to be less important.</p>
-<p><strong>Word clouds for visualizing terms with highest and lowest tf-idf scores</strong></p>
+<h2 id="Inspecting-the-text-features">Inspecting the text features<a class="anchor-link" href="#Inspecting-the-text-features">&#182;</a></h2><p><strong>Word clouds for visualizing terms with highest and lowest tf-idf scores</strong></p>
 <p>I inspected which words tf-idf found most important and least important terms in distinguishing specific documents.</p>
 
 </div>
@@ -1984,9 +1960,9 @@ progress field natural language processing nlp depend existence language resourc
 <p>We can see that the words with higher tf-idf scores distinguish individual topics, such as individual people (Bezos, Hitler, Olsen), specific machine learning or coding (brain, hack, processing), or current events (malaria, suicide, wind).</p>
 <p>The words with lower tf-idf scores are clearly more generic and don't distinguish specific topics. Iterestingly, AI is in this group, which indicates that the term "AI" is used indiscriminately and widely and does not distinguish specific documents in this corpus, which may indicate something about the use of the words or about the general theme of topics in this corpus.</p>
 <h2 id="Time-for-KMeans-clustering!">Time for KMeans clustering!<a class="anchor-link" href="#Time-for-KMeans-clustering!">&#182;</a></h2><p>Next I ran this unsupervised clustering algorithm to discover groups in the text data</p>
-<h3 id="Choosing-the-best-number-of-clusters">Choosing the best number of clusters<a class="anchor-link" href="#Choosing-the-best-number-of-clusters">&#182;</a></h3><p>Without group truth labels with which to evaluate kmeans, detemining parameters like number of clusters can be difficult.</p>
+<h3 id="Choosing-the-best-number-of-clusters">Choosing the best number of clusters<a class="anchor-link" href="#Choosing-the-best-number-of-clusters">&#182;</a></h3><p>Without ground truth labels with which to evaluate kmeans, detemining parameters, like number of clusters, can be difficult.</p>
 <p>One way to evaluate kmeans without ground truth is the within cluster sum of squared errors (distortion). Lower scores are generally better because they mean tighter clusters.</p>
-<p>Another way is through silhouette score, which measures the distance between clusters by measuring how close each point in one cluster is to the neighboring cluster. It is a measure between [-1,1], where higher scores are generally better because they mean more distinct clusters.</p>
+<p>Another way is through silhouette scores, which compares the mean distance of points to thier own cluster to points in the neighboring cluster. It is a measure between [-1,1], where scores closers to 1 indicated points are closer to their own cluster, 0 means the clusters are overlapping, and -1 means points are closer to their neighboring cluster than thier own cluster.</p>
 <p><strong>The best number of clusters will cause the SSE curve to bend, and also maximize the silhouette score.</strong></p>
 
 </div>
@@ -2279,7 +2255,7 @@ progress field natural language processing nlp depend existence language resourc
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Top-words-by-cluster">Top words by cluster<a class="anchor-link" href="#Top-words-by-cluster">&#182;</a></h3><p>Next, I printed several 1-gram terms that represent the largest coordinate values in the high-dimensional cluster centers. These terms are more important in determining the cluster center and thus more important for the cluster.</p>
+<h3 id="Top-words-by-cluster">Top words by cluster<a class="anchor-link" href="#Top-words-by-cluster">&#182;</a></h3><p>Next, I printed several 1-gram terms that are the most important in determining the centroid of each cluster. The centroid of each cluster is a coordinate that has as many dimensions as there are terms (features). The terms with the highest coordinate values represent the features with the most import for that cluster.</p>
 
 </div>
 </div>
@@ -2356,7 +2332,7 @@ Cluster 13: musk tesla tweet unsworth whistleblower ukraine ukrainian retweet cr
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>KMeans clustering, because it's unsupervized, can sometimes cluster based on constructs that we aren't interested in. However, looking at the top words in each cluster, it appears that each cluster represents a reasonal topic in the realm of the articles I was looking at.</p>
-<h2 id="Dimensionality-reduction-using-SVD">Dimensionality reduction using SVD<a class="anchor-link" href="#Dimensionality-reduction-using-SVD">&#182;</a></h2><p>However, there are some words included that make it clear that the semantics aren't always being accurately represented, for instance, in Cluster 2, concepts of organ donation and philanthropy are being conflated. Tf-idf vectorization should convey some semantic information due to it's process of weighting them by importance in a document, which presumable have various topics. But how can we do better?</p>
+<h2 id="Dimensionality-reduction-using-SVD">Dimensionality reduction using SVD<a class="anchor-link" href="#Dimensionality-reduction-using-SVD">&#182;</a></h2><p>However, there are some words included that make it clear that the semantics aren't always being accurately represented, for instance, in Cluster 2, concepts of organ donation and philanthropy are being conflated. Tf-idf vectorization should convey some semantic information due to it's process of weighting them by importance in a document, which presumably have various topics. But how can we do better?</p>
 <p>I decided to try doing a dimensionality reduction technique called SVD, which is often used for latent semantic analysis and works on tf-idf matrices. This way, latent patterns in the term frequencies can be identified, which may convey more semantic information that is then used in the KMeans clustering.</p>
 <p><strong>Here, I reduce the number of features to 100</strong></p>
 
