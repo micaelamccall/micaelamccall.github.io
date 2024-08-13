@@ -1280,34 +1280,170 @@ h6:hover .anchor-link {
 <p>We used the same A100 GPU instance for inference with the fine-tuned PEFT models, as well as for ICL and speculative decoding.</p>
 <h3 id="Summary-of-Findings">Summary of Findings<a class="anchor-link" href="#Summary-of-Findings">&#182;</a></h3><p>We implemented each PEFT, ICL, and inference-time efficiency method described above and evaluated each one by measuring the performance of the resultant models on test data and the inference-time efficiency while generating predictions.</p>
 <p>We evaluated each approach using accuracy (Jaccard similarity), perplexity (which captures the degree of uncertainty of the model when seeing new data), and GPU throughput (number of output tokens the model generates per second).</p>
-<p><strong>Gemma 2B Results</strong>
-|  Approach |  Test Accuracy |Test Avg Jaccard Similarity| GPU Throughput | Training Perplexity |
-|  ---------| ---------------| -----------------------| --------------| ---------------|
-|  QLoRA    |     0.0        |   0.1878             |       169.6         |    24.6407       | 
-|  AdaLoRA  |     0.0        |   0.2133             |    135.0            |   638.3585       |
-|  (IA)^3   |     0.0        |   0.2125             |    180.3            |    35.6803       |
-|  Prompt Tuning  |     0.0  |   0.0449             |    190.5            |    35.6803       |</p>
-<p><strong>Gemma 7B Results</strong>
-|  Approach |  Test Accuracy |Test Avg Jaccard Similarity| GPU Throughput | Training Perplexity |
-|  ---------| ---------------| -----------------------| --------------| ---------------|
-|  QLoRA    |     0.0        |   0.1878             |       169.6         |    24.6407       | 
-|  AdaLoRA  |     0.0        |   0.2133             |    135.0            |   638.3585       |
-|  (IA)^3   |     0.0        |   0.2125             |    180.3            |    35.6803       |
-|  Prompt Tuning  |     0.0  |   0.0449             |    190.5            |    35.6803       |</p>
-<p><strong>Llama 7B Results</strong>
-|  Approach |  Test Accuracy |Test Avg Jaccard Similarity| GPU Throughput | Training Perplexity |
-|  ---------| ---------------| -----------------------| --------------| ---------------|
-|  QLoRA    |     0.0        |   0.1878             |       169.6         |    24.6407       | 
-|  AdaLoRA  |     0.0        |   0.2133             |    135.0            |   638.3585       |
-|  (IA)^3   |     0.0        |   0.2125             |    180.3            |    35.6803       |
-|  Prompt Tuning  |     0.0  |   0.0449             |    190.5            |    35.6803       |</p>
-<p><strong>Mistral 7B Results</strong>
-|  Approach |  Test Accuracy |Test Avg Jaccard Similarity| GPU Throughput | Training Perplexity |
-|  ---------| ---------------| -----------------------| --------------| ---------------|
-|  QLoRA    |     0.0        |   0.1878             |       169.6         |    24.6407       | 
-|  AdaLoRA  |     0.0        |   0.2133             |    135.0            |   638.3585       |
-|  (IA)^3   |     0.0        |   0.2125             |    180.3            |    35.6803       |
-|  Prompt Tuning  |     0.0  |   0.0449             |    190.5            |    35.6803       |</p>
+<p><strong>Gemma 2B Results</strong></p>
+<table>
+<thead><tr>
+<th>Approach</th>
+<th>Test Accuracy</th>
+<th>Test Avg Jaccard Similarity</th>
+<th>GPU Throughput</th>
+<th>Training Perplexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QLoRA</td>
+<td>0.0</td>
+<td>0.1878</td>
+<td>169.6</td>
+<td>24.6407</td>
+</tr>
+<tr>
+<td>AdaLoRA</td>
+<td>0.0</td>
+<td>0.2133</td>
+<td>135.0</td>
+<td>638.3585</td>
+</tr>
+<tr>
+<td>(IA)^3</td>
+<td>0.0</td>
+<td>0.2125</td>
+<td>180.3</td>
+<td>35.6803</td>
+</tr>
+<tr>
+<td>Prompt Tuning</td>
+<td>0.0</td>
+<td>0.0449</td>
+<td>190.5</td>
+<td>35.6803</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gemma 7B Results</strong></p>
+<table>
+<thead><tr>
+<th>Approach</th>
+<th>Test Accuracy</th>
+<th>Test Avg Jaccard Similarity</th>
+<th>GPU Throughput</th>
+<th>Training Perplexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QLoRA</td>
+<td>0.0</td>
+<td>0.1878</td>
+<td>169.6</td>
+<td>24.6407</td>
+</tr>
+<tr>
+<td>AdaLoRA</td>
+<td>0.0</td>
+<td>0.2133</td>
+<td>135.0</td>
+<td>638.3585</td>
+</tr>
+<tr>
+<td>(IA)^3</td>
+<td>0.0</td>
+<td>0.2125</td>
+<td>180.3</td>
+<td>35.6803</td>
+</tr>
+<tr>
+<td>Prompt Tuning</td>
+<td>0.0</td>
+<td>0.0449</td>
+<td>190.5</td>
+<td>35.6803</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Llama 7B Results</strong></p>
+<table>
+<thead><tr>
+<th>Approach</th>
+<th>Test Accuracy</th>
+<th>Test Avg Jaccard Similarity</th>
+<th>GPU Throughput</th>
+<th>Training Perplexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QLoRA</td>
+<td>0.0</td>
+<td>0.1878</td>
+<td>169.6</td>
+<td>24.6407</td>
+</tr>
+<tr>
+<td>AdaLoRA</td>
+<td>0.0</td>
+<td>0.2133</td>
+<td>135.0</td>
+<td>638.3585</td>
+</tr>
+<tr>
+<td>(IA)^3</td>
+<td>0.0</td>
+<td>0.2125</td>
+<td>180.3</td>
+<td>35.6803</td>
+</tr>
+<tr>
+<td>Prompt Tuning</td>
+<td>0.0</td>
+<td>0.0449</td>
+<td>190.5</td>
+<td>35.6803</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mistral 7B Results</strong></p>
+<table>
+<thead><tr>
+<th>Approach</th>
+<th>Test Accuracy</th>
+<th>Test Avg Jaccard Similarity</th>
+<th>GPU Throughput</th>
+<th>Training Perplexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QLoRA</td>
+<td>0.0</td>
+<td>0.1878</td>
+<td>169.6</td>
+<td>24.6407</td>
+</tr>
+<tr>
+<td>AdaLoRA</td>
+<td>0.0</td>
+<td>0.2133</td>
+<td>135.0</td>
+<td>638.3585</td>
+</tr>
+<tr>
+<td>(IA)^3</td>
+<td>0.0</td>
+<td>0.2125</td>
+<td>180.3</td>
+<td>35.6803</td>
+</tr>
+<tr>
+<td>Prompt Tuning</td>
+<td>0.0</td>
+<td>0.0449</td>
+<td>190.5</td>
+<td>35.6803</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -1465,24 +1601,92 @@ As described above, quantization means compressing the model by converting the d
 <li>Train the model using the PEFT hyperparameters and the general training hyperparameters mentioned below. </li>
 <li>When training is complete, save the trained model and the training losses.</li>
 </ul>
-<p>Below is a description of each approach-specific hyperparameter: 
-|  Approach |  Hyperparameter  | Description |
-|  ---------| -----------------| ------------|
-|  LoRA, QLoRa, AdaLoRA  | r |  Rank; the size of the low-rank matrices used to decompose the weight ma- trix. |
-|      |  alpha|  Scaling factor applied to the learned decomposition matrices.|
-|      |  bias|  Whether “none”, “all”, or only the LoRA bias parameters should be trained.|
-|      |  dropout|  The dropout probability for LoRA layers.|
-|  AdaLoRA  | target_r |  The target average rank of incremental matrix. |
-|      | init_r | The initial rank for each incremental matrix. |
-|      | tinit | The steps of initial fine-tuning warmup. |
-|      | tfinal | The step of final fine-tuning. |
-|  QLoRA Quantization  | load_in_4bit |  Whether to quantize the model to 4-bits when you load it set [14]. |
-|     | bnb_4bit_compute_dtype |  The computational type which might be different than the input time. Use torch.bfloat16 for speedups [14]. |
-|     | bnb_4bit_use_double_quant |  Whether to use a nested quantization scheme to quantize the already quan- tized weights set [14]. |
-|  (IA)^3  | target_modules | The layers to apply rescaling to [9,15]. |
-|  Prompt Tuning | prompt_tuning_init | The initialization of the prompt embedding [4]. |
-|     | prompt_tuning_init_text | The text to initialize the prompt embedding [4]. |
-|     | prompt_tuning_init_text | The text to initialize the prompt embedding [4]. |</p>
+<p>Below is a description of each approach-specific hyperparameter:</p>
+<table>
+<thead><tr>
+<th>Approach</th>
+<th>Hyperparameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LoRA, QLoRa, AdaLoRA</td>
+<td>r</td>
+<td>Rank; the size of the low-rank matrices used to decompose the weight ma- trix.</td>
+</tr>
+<tr>
+<td></td>
+<td>alpha</td>
+<td>Scaling factor applied to the learned decomposition matrices.</td>
+</tr>
+<tr>
+<td></td>
+<td>bias</td>
+<td>Whether “none”, “all”, or only the LoRA bias parameters should be trained.</td>
+</tr>
+<tr>
+<td></td>
+<td>dropout</td>
+<td>The dropout probability for LoRA layers.</td>
+</tr>
+<tr>
+<td>AdaLoRA</td>
+<td>target_r</td>
+<td>The target average rank of incremental matrix.</td>
+</tr>
+<tr>
+<td></td>
+<td>init_r</td>
+<td>The initial rank for each incremental matrix.</td>
+</tr>
+<tr>
+<td></td>
+<td>tinit</td>
+<td>The steps of initial fine-tuning warmup.</td>
+</tr>
+<tr>
+<td></td>
+<td>tfinal</td>
+<td>The step of final fine-tuning.</td>
+</tr>
+<tr>
+<td>QLoRA Quantization</td>
+<td>load_in_4bit</td>
+<td>Whether to quantize the model to 4-bits when you load it set [14].</td>
+</tr>
+<tr>
+<td></td>
+<td>bnb_4bit_compute_dtype</td>
+<td>The computational type which might be different than the input time. Use torch.bfloat16 for speedups [14].</td>
+</tr>
+<tr>
+<td></td>
+<td>bnb_4bit_use_double_quant</td>
+<td>Whether to use a nested quantization scheme to quantize the already quan- tized weights set [14].</td>
+</tr>
+<tr>
+<td>(IA)^3</td>
+<td>target_modules</td>
+<td>The layers to apply rescaling to [9,15].</td>
+</tr>
+<tr>
+<td>Prompt Tuning</td>
+<td>prompt_tuning_init</td>
+<td>The initialization of the prompt embedding [4].</td>
+</tr>
+<tr>
+<td></td>
+<td>prompt_tuning_init_text</td>
+<td>The text to initialize the prompt embedding [4].</td>
+</tr>
+<tr>
+<td></td>
+<td>prompt_tuning_init_text</td>
+<td>The text to initialize the prompt embedding [4].</td>
+</tr>
+</tbody>
+</table>
 <p>While I didn't include the CLI in this notebook, below are a number of functions used to load the models, training configs, and to call the training procedures.</p>
 
 </div>
